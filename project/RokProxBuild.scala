@@ -9,15 +9,20 @@ object BuildSettings {
 
   val buildVersion = "0.2.2"
 
-  val buildScalaVersion = "2.9.2"
+  val buildScalaVersion = "2.10.4"
 
   val buildSettings = Project.defaultSettings ++ Seq (
     organization := buildOrganization,
     version      := buildVersion,
     scalaVersion := buildScalaVersion,
     shellPrompt  := ShellPrompt.buildShellPrompt,
-    resolvers    += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/",
-    resolvers    += "Ticketfly GitHub Repo" at "http://ticketfly.github.com/repo",
+    
+    resolvers ++= Seq(
+      "Akka Repo" at "http://repo.akka.io/repository",
+      "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/",
+      "Ticketfly GitHub Repo" at "http://ticketfly.github.com/repo"
+    ),
+
     publishTo    := Some(Resolver.file("bigtoast.github.com", file(Path.userHome + "/Projects/BigToast/bigtoast.github.com/repo")))
   )
 }
@@ -46,6 +51,10 @@ object ShellPrompt {
 
 }
 
+object Versions {
+  val Akka = "2.3.6"
+}
+
 object RokProxBuild extends Build {
 
   import BuildSettings._
@@ -57,10 +66,12 @@ object RokProxBuild extends Build {
 
   val deps = Seq (
         "com.ticketfly"     % "pillage-core"    % "56.0",
-        "com.typesafe.akka" % "akka-actor"      % "2.0.5",
-        "com.typesafe.akka" % "akka-remote"     % "2.0.5",
-        "com.typesafe.akka" % "akka-testkit"    % "2.0.5" % "test",
+        "com.typesafe.akka" %% "akka-actor"      % Versions.Akka,
+        "com.typesafe.akka" %% "akka-remote"     % Versions.Akka,
+        "com.typesafe.akka" %% "akka-testkit"    % Versions.Akka % "test",
         "org.scalatest"     %% "scalatest"      % "1.9.1" % "test",
+        "com.github.stephenc.eaio-uuid" % "uuid" % "3.2.0",
+        //"com.github.stephenc.eaio-grabbag" % "grabbag" % "1.8.1",
         "junit" % "junit"   % "4.9"             % "test",
         "com.novocode"      % "junit-interface" % "0.8"   % "test->default"
         )
@@ -80,8 +91,8 @@ object RokProxBuild extends Build {
     )
 
   lazy val client = Project( id = "client", base = file("client"), settings = buildSettings ++ assemblySettings ).settings(
-      libraryDependencies += "org.scala-sbt" % "command"     % "0.12.0",
-      libraryDependencies += "org.scala-sbt" % "task-system" % "0.12.0",
+      //libraryDependencies += "org.scala-sbt" % "command"     % "0.12.0",
+      //libraryDependencies += "org.scala-sbt" % "task-system" % "0.12.0",
       mainClass := Some("com.github.bigtoast.rokprox.RokProxClient"),
       // task for creating distribution ( directory with jars, scripts etc.. )
       distLibJars <<= ( outputPath in assembly ) map { ( p :File ) => (p :: Nil) },

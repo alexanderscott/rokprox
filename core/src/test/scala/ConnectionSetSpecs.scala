@@ -7,9 +7,10 @@ import com.ticketfly.pillage._
 import RokProx._
 
 import akka.testkit.{ TestActorRef, TestKit }
-import akka.actor.{ ActorRef, IO, Actor, ActorSystem, Props, IOManager }
+import akka.actor.{ ActorRef, Actor, ActorSystem, Props, IOManager }
 import akka.util.ByteString
-import IO._
+import akka.io.IO
+import akka.io.IO._
 import java.net.InetSocketAddress
 
 class ConnectionSetSpecs extends WordSpec with ShouldMatchers with BeforeAndAfterAll{

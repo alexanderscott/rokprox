@@ -4,11 +4,12 @@ import org.scalatest._
 import org.scalatest.matchers.ShouldMatchers
 
 import akka.testkit.{ TestKit, TestActorRef }
-import akka.actor.{ ActorRef, IO, Actor, ActorSystem, Props, IOManager }
+import akka.actor.{ ActorRef, Actor, ActorSystem, Props, IOManager }
 import akka.dispatch.Await
 import akka.util.ByteString
 import akka.util.duration._
-import IO._
+import akka.io.IO
+import akka.io.IO._
 import java.net.InetSocketAddress
 
 class RokProxServerSpecs( _system :ActorSystem ) extends TestKit(_system) with WordSpec with ShouldMatchers with BeforeAndAfterAll  {

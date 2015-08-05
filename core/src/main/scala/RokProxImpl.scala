@@ -1,13 +1,15 @@
 package com.github.bigtoast.rokprox
 
 import akka.actor._
-import akka.util.{ Duration, FiniteDuration, ByteString }
-import akka.util.duration._
+import akka.util._
+import scala.concurrent.duration._
 import com.ticketfly.pillage.StatsContainer
 import java.util.concurrent.CountDownLatch
 import collection.immutable.Queue
 import com.eaio.uuid.UUID
 import scala.compat.Platform
+import akka.io.IO
+import akka.io.IO._
 import java.net.InetSocketAddress
 
 

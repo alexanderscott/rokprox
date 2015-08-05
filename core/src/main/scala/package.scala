@@ -4,9 +4,9 @@ package com.github.bigtoast
 import akka.actor.{Props, ActorSystem, ActorRef }
 import akka.pattern.ask
 import akka.util.{ FiniteDuration, Duration, Timeout }
-import akka.util.duration._
 import com.typesafe.config.ConfigFactory
 import com.ticketfly.pillage._
+import scala.concurrent.duration._
 
 /**
  * Testing distributed code is hard. Writing tests is inherently difficult and testing 

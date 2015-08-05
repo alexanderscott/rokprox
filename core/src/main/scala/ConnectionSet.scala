@@ -3,7 +3,8 @@ package com.github.bigtoast.rokprox
 import com.ticketfly.pillage._
 import com.eaio.uuid.UUID
 import compat.Platform
-import akka.actor.IO
+import akka.io.IO
+import akka.io.IO._
 import akka.util.ByteString
 import collection.mutable
 

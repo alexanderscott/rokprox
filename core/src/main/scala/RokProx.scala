@@ -4,8 +4,8 @@ import akka.actor.{ ActorSystem, ActorRef, Props }
 import java.util.concurrent.CountDownLatch
 import com.typesafe.config.ConfigFactory
 import com.ticketfly.pillage._
-import akka.util.FiniteDuration
-import akka.dispatch.Future
+import scala.concurrent.Future
+import scala.concurrent.duration._
 
 /**
   * Testing fault tolerance in a distributed system is hard. This is a tool to assist in the testing. In 
